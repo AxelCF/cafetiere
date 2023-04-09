@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cafetiere{% endblock %}
+
+{% block body %}
+    <h1>Cafetiere</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ cafetiere.id }}</td>
+            </tr>
+            <tr>
+                <th>Couleur</th>
+                <td>{{ cafetiere.couleur }}</td>
+            </tr>
+            <tr>
+                <th>IsOn</th>
+                <td>{{ cafetiere.isOn ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_cafetiere_index') }}">back to list</a>
+
+    <a href="{{ path('app_cafetiere_edit', {'id': cafetiere.id}) }}">edit</a>
+
+    {{ include('cafetiere/_delete_form.html.twig') }}
+{% endblock %}

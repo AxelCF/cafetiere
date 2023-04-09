@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cafetiere index
+{% endblock %}
+
+{% block body %}
+	{% set png = '.png' %}
+	<h1>Cafetiere index</h1>
+	<div class="w-75 mx-auto text-center ">
+		<div class="table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Couleur</th>
+						<th>IsOn</th>
+						<th>actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for cafetiere in cafetieres %}
+						<tr>
+							<td>{{ cafetiere.id }}</td>
+							<td>{{ cafetiere.couleur }}</td>
+							<td>{{ cafetiere.isOn ? 'Yes' : 'No' }}</td>
+							<td>
+								<a href="{{ path('app_cafetiere_show', {'id': cafetiere.id}) }}">show</a>
+								<a href="{{ path('app_cafetiere_edit', {'id': cafetiere.id}) }}">edit</a>
+								<a href="{{ path('app_cafetiere_light', {'id': cafetiere.id}) }}" class="btn {{cafetiere.isOn ? " btn-danger" : " btn-success"}}">{{ cafetiere.isOn ? "éteindre" : "allumer "}}</a>
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="4">no records found</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<a href="{{ path('app_cafetiere_new') }}">Create new</a>
+	{# d-flex justify-content-around  #}
+	<div class="container">
+		<div class="row row-cols-2 row-cols-lg-6 g-2 g-lg-3">
+			{% for cafetiere in cafetieres %}
+				<div class="col">
+					<div class="card text-center">
+						<img class="card-img-top" src="{{asset('images/cafetiere'~cafetiere.couleur~png)}}" alt=" card image cap">
+						<div class="card-body">
+							<a href="{{ path('app_cafetiere_dosette', {'id': cafetiere.id}) }}" class="btn mb-2 {{cafetiere.dosettes ? " btn-danger" : " btn-success"}}">{{ cafetiere.dosettes ? "retirer la dosette" : "Ajouter une dosette"}}</a>
+							<a href="{{ path('app_cafetiere_light', {'id': cafetiere.id}) }}" class="btn {{cafetiere.isOn ? " btn-danger" : " btn-success"}}">{{ cafetiere.isOn ? "éteindre" : "allumer "}}</a>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+
+{% endblock %}
