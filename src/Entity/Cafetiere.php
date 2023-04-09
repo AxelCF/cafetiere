@@ -22,6 +22,12 @@ class Cafetiere
     #[ORM\Column (nullable: true)]
     private ?int $dosettes = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $water = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $doCafe = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -59,6 +65,30 @@ class Cafetiere
     public function setDosettes(int $dosettes): self
     {
         $this->dosettes = $dosettes;
+
+        return $this;
+    }
+
+    public function getWater(): ?int
+    {
+        return $this->water;
+    }
+
+    public function setWater(?int $water): self
+    {
+        $this->water = $water;
+
+        return $this;
+    }
+
+    public function getDoCafe(): ?int
+    {
+        return $this->doCafe;
+    }
+
+    public function setDoCafe(?int $doCafe): self
+    {
+        $this->doCafe = $doCafe;
 
         return $this;
     }

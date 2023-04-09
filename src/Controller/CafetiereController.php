@@ -68,6 +68,28 @@ class CafetiereController extends AbstractController
        return $this->redirectToRoute('app_cafetiere_index');
     }
 
+        #[Route('/water/{id}', name: 'app_cafetiere_water')]
+    public function waterAction(Cafetiere $cafetiere, CafetiereRepository $cafetiereRepository): Response
+    {
+       $cafetiere->setWater($cafetiere->getWater() == 0 ? 1 : 0);
+       
+
+       $cafetiereRepository->save($cafetiere, 1);
+       return $this->redirectToRoute('app_cafetiere_index');
+    }
+
+        #[Route('/cafe/{id}', name: 'app_cafetiere_cafe')]
+    public function cafeAction(Cafetiere $cafetiere, CafetiereRepository $cafetiereRepository): Response
+    {
+        if ($cafetiere->getDosettes() == 1 && $cafetiere->getWater() == 1 && $cafetiere->getIsOn() == 1) {
+            $cafetiere->setDoCafe($cafetiere->getDoCafe() == 0 ? 1 : 0);
+        }
+       
+
+       $cafetiereRepository->save($cafetiere, 1);
+       return $this->redirectToRoute('app_cafetiere_index');
+    }
+
     #[Route('/{id}/edit', name: 'app_cafetiere_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Cafetiere $cafetiere, CafetiereRepository $cafetiereRepository): Response
     {

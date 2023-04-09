@@ -49,7 +49,9 @@
 						<img class="card-img-top" src="{{asset('images/cafetiere'~cafetiere.couleur~png)}}" alt=" card image cap">
 						<div class="card-body">
 							<a href="{{ path('app_cafetiere_dosette', {'id': cafetiere.id}) }}" class="btn mb-2 {{cafetiere.dosettes ? " btn-danger" : " btn-success"}}">{{ cafetiere.dosettes ? "retirer la dosette" : "Ajouter une dosette"}}</a>
-							<a href="{{ path('app_cafetiere_light', {'id': cafetiere.id}) }}" class="btn {{cafetiere.isOn ? " btn-danger" : " btn-success"}}">{{ cafetiere.isOn ? "éteindre" : "allumer "}}</a>
+							<a href="{{ path('app_cafetiere_water', {'id': cafetiere.id}) }}" class="btn mb-2 {{cafetiere.water ? " btn-danger" : " btn-success"}}">{{ cafetiere.water ? "plein" : "mettre dee l'eau "}}</a>
+							<a href="{{ path('app_cafetiere_light', {'id': cafetiere.id}) }}" class="btn mb-2 {{cafetiere.isOn ? " btn-danger" : " btn-success"}}">{{ cafetiere.isOn ? "éteindre" : "allumer "}}</a>
+							<a href="{{ path('app_cafetiere_cafe', {'id': cafetiere.id}) }}" class="btn mb-2 {{cafetiere.doCafe ? " btn-danger" : " btn-success"}}">{{ cafetiere.doCafe ? "Prêt" : "Faire du Café "}}</a>
 						</div>
 					</div>
 				</div>
